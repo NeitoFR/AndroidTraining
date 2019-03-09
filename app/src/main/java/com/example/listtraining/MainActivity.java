@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
     private DrawerLayout drawerLayout;
     private ListView listView;
-    private ArrayList<String> itemList;
+    private ArrayList<String> artworkList;
     private ArrayAdapter<String> adapter;
     private Button addButton;
     private EditText itemEdit;
@@ -48,8 +48,8 @@ public class MainActivity extends AppCompatActivity {
         actionBar.setTitle(R.string.app_title);
         actionBar.setSubtitle(R.string.app_subtitle);
 
-        itemList = new ArrayList<String>();
-        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, itemList);
+        artworkList = new ArrayList<String>();
+        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, artworkList);
         listView.setAdapter(adapter);
         itemEdit = findViewById(R.id.item_edit);
         addButton = findViewById(R.id.add_btn);
@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 adapter.add(itemEdit.getText().toString());
-                Snackbar.make(v, "Item "+itemList.size()+" added", Snackbar.LENGTH_LONG)
+                Snackbar.make(v, "Item "+artworkList.size()+" added", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
                 itemEdit.setText("");
             }
@@ -98,6 +98,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         dialog.dismiss();
+//                        Créer la liste des artistes dans le Dialog
                     }
                 });
 

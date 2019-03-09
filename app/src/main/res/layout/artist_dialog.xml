@@ -1,15 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_height="450dp"
     android:layout_width="310dp"
+    android:layout_height="450dp"
     android:orientation="vertical">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/artist_dial_toolbar"
-        android:layout_height="52dp"
         android:layout_width="match_parent"
-        android:minHeight="?attr/actionBarSize"
-        android:background="?attr/colorPrimary" />
+        android:layout_height="52dp"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize" />
+
+    <ListView
+        android:id="@+id/artist_dial_artist_list"
+        android:layout_width="match_parent"
+        android:layout_height="350dp" />
+
     <Button
         android:id="@+id/artist_dial_btn"
         android:layout_width="match_parent"
