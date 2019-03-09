@@ -1,5 +1,7 @@
 package com.example.listtraining;
 
+import android.app.Dialog;
+import android.content.Context;
 import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -29,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     private Button clrButton;
     private Button changeArtistButton;
     private TextView selectItemViewer;
-
+    final Context context = this;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,8 +45,8 @@ public class MainActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
-        actionBar.setTitle("Big Title");
-        actionBar.setSubtitle("Subtitle");
+        actionBar.setTitle(R.string.app_title);
+        actionBar.setSubtitle(R.string.app_subtitle);
 
         itemList = new ArrayList<String>();
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, itemList);
@@ -79,6 +81,27 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 selectItemViewer.setText(adapter.getItem(position));
                 drawerLayout.closeDrawers();
+            }
+        });
+        changeArtistButton = findViewById(R.id.change_artist_button);
+        changeArtistButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Dialog dialog = new Dialog(context);
+                dialog.setContentView(R.layout.artist_dialog);
+
+                Toolbar artistDialToolbar = dialog.findViewById(R.id.artist_dial_toolbar);
+                artistDialToolbar.setTitle(R.string.artist_dial_toolbar_title);
+
+                Button artistDialBtn = dialog.findViewById(R.id.artist_dial_btn);
+                artistDialBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
+
+                dialog.show();
             }
         });
     }

@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">ListTraining</string>
     <string name="nav_header_btn_text">Change artist</string>
+    <string name="app_title">Rijsk Museum Viewer</string>
+    <string name="app_subtitle">Super App !!</string>
+    <string name="artist_dial_toolbar_title">Choose Artist</string>
+    <string name="artist_dial_select_btn_text">select</string>
 </resources>
