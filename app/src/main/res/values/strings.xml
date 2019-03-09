@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">ListTraining</string>
+    <string name="nav_header_btn_text">Change artist</string>
+</resources>
