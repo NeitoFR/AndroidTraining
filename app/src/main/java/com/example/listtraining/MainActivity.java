@@ -9,6 +9,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -87,6 +88,9 @@ public class MainActivity extends AppCompatActivity {
         changeArtistButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                for (int i = 0; i < 10; i++) {
+
+                }
                 final Dialog dialog = new Dialog(context);
                 dialog.setContentView(R.layout.artist_dialog);
 
@@ -107,14 +111,43 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    private void openArtworkInfo() {
+        final Dialog dialog = new Dialog(context);
+        dialog.setContentView(R.layout.artist_dialog);
+
+        Toolbar artistDialToolbar = dialog.findViewById(R.id.artist_dial_toolbar);
+        artistDialToolbar.setTitle(R.string.artist_dial_toolbar_title);
+
+        Button artistDialBtn = dialog.findViewById(R.id.artist_dial_btn);
+        artistDialBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+//                        Créer la liste des artistes dans le Dialog
+            }
+        });
+
+        dialog.show();
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
                 drawerLayout.openDrawer(GravityCompat.START);
-
+                return true;
+            case R.id.artwork_info_btn:
+                openArtworkInfo();
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.action_bar_item, menu);
+        return true;
     }
 }
