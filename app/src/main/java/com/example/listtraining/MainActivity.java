@@ -2,6 +2,7 @@ package com.example.listtraining;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -27,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private ListView listView;
     private ArrayList<String> artworkList;
     private ArrayAdapter<String> adapter;
-    private Button addButton;
+    private Button addButton,test;
     private EditText itemEdit;
     private Button clrButton;
     private Button changeArtistButton;
@@ -54,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
         listView.setAdapter(adapter);
         itemEdit = findViewById(R.id.item_edit);
         addButton = findViewById(R.id.add_btn);
+        test=findViewById(R.id.test);
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -107,6 +109,21 @@ public class MainActivity extends AppCompatActivity {
                 });
 
                 dialog.show();
+            }
+        });
+
+        test.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //faire des actions aux boutons et textView lors du click
+                test.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        Intent intent = new Intent(MainActivity.this, images.class);
+                        startActivity(intent);
+                    }
+                });
             }
         });
     }
