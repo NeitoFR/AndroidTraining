@@ -7,10 +7,12 @@ import android.util.Log;
 import android.widget.GridView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
@@ -21,7 +23,7 @@ import java.util.ArrayList;
 
 public class images extends AppCompatActivity {
     //Web api url
-    public static final String DATA_URL = "https://www.rijksmuseum.nl/api/en/collection?key=QKkH603N&format=JSON&principalMaker=Marius Bauer";
+    public static final String DATA_URL = "https://www.rijksmuseum.nl/api/en/collection?key=QKkH603N&format=JSON&principalMaker=Marius Bauer&ps=100";
 
     //Tag values to read from json
     public static final String TAG_IMAGE_URL = "url";
@@ -46,16 +48,30 @@ public class images extends AppCompatActivity {
     }
     private void getData(){
 
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(DATA_URL,
-                new Response.Listener<JSONArray>() {
+        JsonObjectRequest jsonArrayRequest = new JsonObjectRequest(Request.Method.GET, DATA_URL,null,
+                new Response.Listener<JSONObject>() {
                     @Override
-                    public void onResponse(JSONArray response) {
+                    public void onResponse(JSONObject response) {
 
                       // loading.dismiss();
 
                         //Displaying our grid
-                        showGrid(response);
-                        Log.e("info","TESSSSSSSSSSSSSSSSSST"+response.length());
+                        try {
+                            System.out.println(response.getJSONArray("artObjects"));
+                            JSONArray artworkList = response.getJSONArray("artObjects");
+                            for (int i = 0; i < artworkList.length(); i++) {
+                                JSONObject artwork = artworkList.getJSONObject(i);
+                                if(!artwork.get("webImage").equals(null) && !artwork.getJSONObject("webImage").getString("url").equals(null))
+                                    System.out.println(i+" : "+artwork.getJSONObject("webImage").getString("url"));
+                                else {
+                                    System.out.println("webImage or URL is null");
+                                }
+//                                if(test.getJSONObject(i).getJSONObject("webImage").getString("url") != "null" || test.getJSONObject(i).getJSONObject("webImage").toString() != "null")
+
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
                 },
                 new Response.ErrorListener() {
