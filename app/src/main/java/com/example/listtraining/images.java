@@ -64,11 +64,12 @@ public class images extends AppCompatActivity {
                                 if(!artwork.get("webImage").equals(null) && !artwork.getJSONObject("webImage").getString("url").equals(null))
                                     System.out.println(i+" : "+artwork.getJSONObject("webImage").getString("url"));
                                 else {
-                                    System.out.println("webImage or URL is null");
+                                    System.out.println("webImage or URL is null deleting from array");
+                                    artworkList.remove(i);
                                 }
-//                                if(test.getJSONObject(i).getJSONObject("webImage").getString("url") != "null" || test.getJSONObject(i).getJSONObject("webImage").toString() != "null")
-
                             }
+
+                            showGrid(artworkList);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -89,15 +90,14 @@ public class images extends AppCompatActivity {
     }
     private void showGrid(JSONArray jsonArray){
         //Looping through all the elements of json array
-        for(int i = 0; i<5; i++){
+        for(int i = 0; i<jsonArray.length(); i++){
             //Creating a json object of the current index
-            JSONObject obj = null;
             try {
                 //getting json object from current index
-                obj = jsonArray.getJSONObject(i);
+                JSONObject obj = jsonArray.getJSONObject(i);
 
                 //getting image url and title from json object
-                images.add(obj.getString(TAG_IMAGE_URL));
+                images.add(obj.getJSONObject("webImage").getString(TAG_IMAGE_URL));
                 artists.add(obj.getString(TAG_NAME));
             } catch (JSONException e) {
                 e.printStackTrace();
