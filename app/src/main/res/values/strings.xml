@@ -5,4 +5,6 @@
     <string name="app_subtitle">Super App !!</string>
     <string name="artist_dial_toolbar_title">Choose Artist</string>
     <string name="artist_dial_select_btn_text">select</string>
+    <string name="description">Details</string>
+
 </resources>

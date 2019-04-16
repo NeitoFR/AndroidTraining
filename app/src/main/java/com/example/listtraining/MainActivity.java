@@ -20,6 +20,8 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.listtraining.activities.RecyclerView;
+
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -120,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
 
-                        Intent intent = new Intent(MainActivity.this, images.class);
+                        Intent intent = new Intent(MainActivity.this, RecyclerView.class);
                         startActivity(intent);
                     }
                 });
@@ -167,4 +169,6 @@ public class MainActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.action_bar_item, menu);
         return true;
     }
+
+
 }

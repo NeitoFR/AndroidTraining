@@ -12,9 +12,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".images"></activity>
+        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".activities.AnimeActivity" />
+        <activity android:name=".images" />
         <activity android:name=".testGet" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".activities.RecyclerView">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
